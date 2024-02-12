@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:furniture_app/Screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,6 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+
       child: Scaffold(
         backgroundColor: Color(0xffFEFBE8),
         body: Column(
@@ -26,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 400,
               color: Colors.grey,
               child: Image.asset(
-                'asset/img/image1.jpg',
+                'asset/img/home/concept.jpg',
                 fit: BoxFit.cover,
               ),
             ),
@@ -50,23 +52,31 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(
               height: 80,
             ),
-            Container(
-              height: 50,
-              width: 300,
-              decoration: BoxDecoration(
-                color: Color(0xffE39E5B),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: Text(
-                  'Get Started',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            GestureDetector(onTap: ()
+               {
+                 Navigator.push(context, MaterialPageRoute(
+                   builder: (context) => HomeScreen(),
+                 ));
+               },
+              child: Row(
+                 children: [
+                   Container(
+                     margin: EdgeInsets.all(30),
+                     height: 40,
+                     width: 300,
+                     decoration: BoxDecoration(
+                       color:  Color(0xffE39E5B),
+                       borderRadius: BorderRadius.circular(10),
+                     ),
+                     child: Center(
+                       child: Text('Get Started',style: TextStyle(
+                         color: Colors.white,
+                         fontSize: 20,
+                       ),),
+                     )
+                   ),
+                 ],
+               ),),
           ],
         ),
       ),
