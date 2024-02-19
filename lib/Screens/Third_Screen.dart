@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_app/utils/cartlist.dart';
 import 'package:furniture_app/utils/productdetails.dart';
+import 'package:furniture_app/utils/cartlist.dart';
 
 class Thirdscreen extends StatefulWidget {
   const Thirdscreen({super.key});
@@ -17,6 +18,23 @@ return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xffE1EEDD),
+          actions: [
+            Container(
+              margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child:  IconButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>cartlist()),);
+                  },
+                  icon: const Icon(Icons.local_mall, color: Colors.black,)),
+
+            ),
+          ],
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,7 +42,22 @@ return SafeArea(
             Container(
                 height: 350,
                 width: double.infinity,
-                child: Image.asset(Fenish['image'], fit: BoxFit.cover,)),
+                decoration: BoxDecoration(
+                  color: Color(0xffE1EEDD),
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow:const [
+                    BoxShadow(
+                      color:Colors.grey,
+                      blurRadius:5,
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30)
+                  ),
+                    child: Image.asset(Fenish['image'], fit: BoxFit.cover,))),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 10),
               padding: EdgeInsets.all(10),
@@ -150,17 +183,33 @@ return SafeArea(
               ),
 
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+            Container(
+              height: 100.6,
+              width: 390,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                     spreadRadius: 1,
+                    blurRadius: 4,
+
+                  )
+                ]
+              ),
+
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Total price', style: TextStyle(color: Colors.black54, fontSize: 15),
                       ),
-                      Text('${Fenish['price']}',
+                      Text('${Fenish['price']}''/-',
                         style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ],
@@ -169,9 +218,16 @@ return SafeArea(
                     onTap: ()
                     {
                       Cartlist.add(Fenish);
+                      setState(() {
+
+                        for(int i=0; i<Cartlist.length; i++)
+                        {
+                          count=Cartlist[i]['price'];
+                        }
+                      });
                     },
                     child: Container(
-                      height: 45,
+                      height: 50,
                       width: 200,
                       decoration: BoxDecoration(
                           color: Color(0xffE1EEDD),
@@ -203,3 +259,4 @@ return SafeArea(
     );
   }
 }
+num count=1;

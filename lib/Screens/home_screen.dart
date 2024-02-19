@@ -19,18 +19,21 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: Padding(
+            padding:  EdgeInsets.all(7),
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              child:  Icon(Icons.menu, color: Colors.black,)
+
+            ),
+          ),
           backgroundColor: Color(0xffE1EEDD),
           actions: [
-            // Container(
-            //   margin: const EdgeInsets.symmetric(horizontal: 10),
-            //   height: 40,
-            //   width: double.infinity,
-            //   decoration: BoxDecoration(
-            //     color: Colors.white,
-            //     borderRadius: BorderRadius.circular(20),
-            //   ),
-            //   child: Icon(Icons.menu),
-            // ),
             const Spacer(),
             Container(
               margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
@@ -40,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
               ),
-            child:  IconButton(
+              child:  IconButton(
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>cartlist()),);
                   },
